@@ -14,7 +14,7 @@
 | birth_date      | date   | null: false                    |
 
 - has_many :items
-- has_many :transactions
+- has_many :item_transactions
 
 ## items テーブル
 
@@ -62,6 +62,6 @@
 | address            | string     | null: false                    |
 | building           | string     |                                |
 | phone_number       | string     | null: false                    |
-| transaction        | references | null: false, foreign_key: true |
+| item_transaction   | references | null: false, foreign_key: true |
 
 - belongs_to :transaction
