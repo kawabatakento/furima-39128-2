@@ -4,11 +4,14 @@
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
-| name     | string     | null: false                    |
-| email        | string     | null: false                    |
-| password     | string     | null: false                    |
-| address      | string     | null: false                    |
-| phone_number | string     | null: false                    |
+| nickname     | string     | null: false                    |
+| email        | string     | null: false,unique:true        |
+| encrypted_password        | string     | null: false                    |
+| last_name       | string | null: false                    |
+| first_name      | string | null: false                    |
+| last_name_kana  | string | null: false                    |
+| first_name_kana | string | null: false                    |
+| birth_date      | date   | null: false                    |
 
 - has_many :items
 - has_many :transactions
@@ -17,30 +20,28 @@
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| item_name      | string     | null: false                    |
-| description    | text       | null: false                    |
-| price          | integer    | null: false                    |
-| category_id    | references | null: false, foreign_key: true |
-| seller_id      | references | null: false, foreign_key: true |
-| condition      | string     | null: false                    |
-| stock          | integer    | null: false                    |
-| image          | string     | null: true                     |
+| item_name                | string     | null: false                    |
+| description         | text       | null: false                    |
+| category_id         | integer    | null: false                    |
+| condition_id        | integer    | null: false                    |
+| shipping_fee_id     | integer    | null: false                    |
+| ship_from_region_id | integer    | null: false                    |
+| shipping_time_id    | integer    | null: false                    |
+| price               | integer    | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
 - belongs_to :user
-- belongs_to :category
-- has_one :transaction
+- has_one :item_transaction
 
+## comments テーブル
 
-## categories テーブル
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ |
+| user     | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
+| content  | text       | null: false                    |
 
-| Column         | Type    | Options     |
-| -------------- | ------- | ----------- |
-| category_name  | string  | null: false |
-
-- has_many :items
-
-
-## transactions テーブル（商品購入機能）
+## item_transactions テーブル（商品購入機能）
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
@@ -50,7 +51,6 @@
 - belongs_to :user
 - belongs_to :item
 - has_one :shipping_address
-
 
 ## shipping_addresses テーブル（配送先住所）
 
