@@ -41,6 +41,9 @@
 | item     | references | null: false, foreign_key: true |
 | content  | text       | null: false                    |
 
+- belongs_to :user
+- belongs_to :item
+
 ## item_transactions テーブル（商品購入機能）
 
 | Column             | Type       | Options                        |
@@ -64,4 +67,4 @@
 | phone_number       | string     | null: false                    |
 | item_transaction   | references | null: false, foreign_key: true |
 
-- belongs_to :transaction
+- belongs_to :item_transaction
