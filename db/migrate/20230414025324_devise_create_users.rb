@@ -33,12 +33,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       # t.datetime :locked_at
 
       # Custom fields
-      t.string :nickname
-      t.string :first_name
-      t.string :last_name
-      t.string :first_name_kana
-      t.string :last_name_kana
-      t.date :birth_date
+      t.string :nickname,         null: false, 
+      t.string :first_name,       null: false, 
+      t.string :last_name,        null: false, 
+      t.string :first_name_kana,  null: false, 
+      t.string :last_name_kana,   null: false, 
+      t.date :birth_date,         null: false, 
 
 
       t.timestamps null: false
