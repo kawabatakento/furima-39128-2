@@ -62,3 +62,14 @@ gem 'devise'
 group :production do
   gem 'pg'
 end
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 4.0.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'faker-japanese'
+end
+
+gem 'pry-rails'
