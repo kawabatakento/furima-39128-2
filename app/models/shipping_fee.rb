@@ -1,4 +1,3 @@
-# app/models/shipping_fee_payer.rb
 class ShippingFee < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
