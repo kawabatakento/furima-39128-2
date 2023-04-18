@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_fee
   belongs_to :shipping_time
 
-  validates :category, :condition, :prefecture, :shipping_fee, :shipping_time, presence: true
+  validates :category, :condition, :prefecture, :shipping_fee, :shipping_time, :image, presence: true
   validates :category_id, :condition_id, :prefecture_id, :shipping_fee_id, :shipping_time_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :item_name, presence: true, length: { maximum: 40 }
   validates :description, presence: true, length: { maximum: 1000 }
