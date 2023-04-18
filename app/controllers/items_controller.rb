@@ -19,6 +19,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+    @is_item_owner = @item.user == current_user
+    @item_sold = ItemTransaction.exists?(item_id: @item.id)
+  end
+
   private
 
   def item_params
