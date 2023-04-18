@@ -4,7 +4,7 @@ RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
     @item.image.attach(fixture_file_upload('app/assets/images/sample.png', 'image/png'))
- # fixture_file_uploadを使って画像ファイルを設定
+    # fixture_file_uploadを使って画像ファイルを設定
   end
 
   describe '商品出品' do
@@ -70,33 +70,33 @@ RSpec.describe Item, type: :model do
       end
 
       it '価格が¥300未満の場合、出品できない' do
-        @item.price =     @item.price = 299
+        @item.price = @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
-    
+
       it '価格が¥9,999,999より大きい場合、出品できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
-    
+
       it '価格が半角数値でない場合、出品できない' do
         @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
-    
+
       it '価格が小数点を含む場合、出品できない' do
         @item.price = 1000.5
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be an integer")
+        expect(@item.errors.full_messages).to include('Price must be an integer')
       end
 
       it 'userが紐付いていない場合、出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
