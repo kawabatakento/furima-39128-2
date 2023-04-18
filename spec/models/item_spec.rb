@@ -34,33 +34,33 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリーが選択されていない場合、出品できない' do
-        @item.category_id = 1
+        @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it '商品の状態が選択されていない場合、出品できない' do
-        @item.condition_id = 1
+        @item.condition_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition must be other than 1")
+        expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
 
       it '配送料の負担が選択されていない場合、出品できない' do
-        @item.shipping_fee_id = 1
+        @item.shipping_fee_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping fee must be other than 1")
+        expect(@item.errors.full_messages).to include("Shipping fee can't be blank")
       end
 
       it '発送元の地域が選択されていない場合、出品できない' do
-        @item.prefecture_id = 1
+        @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
 
       it '発送までの日数が選択されていない場合、出品できない' do
-        @item.shipping_time_id = 1
+        @item.shipping_time_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping time must be other than 1")
+        expect(@item.errors.full_messages).to include("Shipping time can't be blank")
       end
 
       it '価格が設定されていない場合、出品できない' do
