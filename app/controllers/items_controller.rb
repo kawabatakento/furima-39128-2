@@ -22,18 +22,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @is_item_owner = @item.user == current_user
     @item_sold = ItemTransaction.exists?(item_id: @item.id)
   end
 
   def edit
-    @item = Item.find(params[:id])
     @item_sold = ItemTransaction.exists?(item_id: @item.id)
   end
 
   def update
-    @item = Item.find(params[:id])
     @item_sold = ItemTransaction.exists?(item_id: @item.id)
     if @item.update(item_params)
       redirect_to item_path(@item)
@@ -50,7 +47,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_root
-    return unless current_user.id != @item.user_id || @item_sold
+    return unless current_user.id != @item.user_id
 
     redirect_to root_path
   end
