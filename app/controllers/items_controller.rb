@@ -14,10 +14,25 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      flash.now[:alert] = @item.errors.full_messages.join(", ")
+      flash.now[:alert] = @item.errors.full_messages.join(', ')
       render :new
     end
   end
+
+  def show
+    @item = Item.find(params[:id])
+    @is_item_owner = @item.user == current_user
+    @item_sold = ItemTransaction.exists?(item_id: @item.id)
+  end
+
+  #def edit
+    #@item = Item.find(params[:id])
+  #end
+
+  #def update
+    #item = Item.find(params[:id])
+    #item.update(item_params)
+  #end
 
   private
 
