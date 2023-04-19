@@ -25,19 +25,18 @@ class ItemsController < ApplicationController
     @item_sold = ItemTransaction.exists?(item_id: @item.id)
   end
 
-  def edit
-    @item = Item.find(params[:id])
-  end
+  #def edit
+    #@item = Item.find(params[:id])
+  #end
 
-  def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-  end
+  #def update
+    #item = Item.find(params[:id])
+    #item.update(item_params)
+  #end
 
   private
 
   def item_params
-    params.require(:item).permit(:item_name, :description, :category_id, :condition_id, :shipping_fee_id, :prefecture_id,
-                                 :shipping_time_id, :price, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:item_name, :description, :category_id, :condition_id, :shipping_fee_id, :prefecture_id, :shipping_time_id, :price, :image).merge(user_id: current_user.id)
   end
 end
