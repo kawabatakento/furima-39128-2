@@ -45,13 +45,14 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:item_name, :description, :category_id, :condition_id, :shipping_fee_id, :prefecture_id, :shipping_time_id, :price, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:item_name, :description, :category_id, :condition_id, :shipping_fee_id, :prefecture_id,
+                                 :shipping_time_id, :price, :image).merge(user_id: current_user.id)
   end
 
   def move_to_root
-    if current_user.id != @item.user_id || @item_sold
-      redirect_to root_path
-    end
+    return unless current_user.id != @item.user_id || @item_sold
+
+    redirect_to root_path
   end
 
   def set_item
