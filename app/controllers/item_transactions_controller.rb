@@ -2,7 +2,7 @@ class ItemTransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
   before_action :move_to_root
-  
+
   def index
     @item_transaction_form = ItemTransactionForm.new
   end
@@ -42,7 +42,7 @@ class ItemTransactionsController < ApplicationController
   end
 
   def move_to_root
-    @item_sold = ItemTransaction.exists?(item_id: @item.id)
+    return unless current_user.id == @item.user_id
 
     redirect_to root_path
   end

@@ -19,11 +19,10 @@ class ItemTransactionForm
   end
 
   def save
-    return false if invalid?
   
     ActiveRecord::Base.transaction do
       item_transaction = ItemTransaction.create!(user_id: user_id, item_id: item_id)
-      ShippingAddress.create!(
+      ShippingAddress.create(
         postal_code: postal_code,
         prefecture_id: prefecture_id,
         city: city,
@@ -33,8 +32,5 @@ class ItemTransactionForm
         item_transaction_id: item_transaction.id
       )
     end
-  rescue ActiveRecord::RecordInvalid
-    false
   end
-  
 end
