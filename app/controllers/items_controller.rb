@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :move_to_root, only: [:edit, :update]
+  before_action :prevent_sold_out_item_edit, only: [:edit, :update]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -59,6 +60,12 @@ class ItemsController < ApplicationController
     return unless current_user.id != @item.user_id
 
     redirect_to root_path
+  end
+
+  def prevent_sold_out_item_edit
+    if ItemTransaction.exists?(item_id: @item.id)
+      redirect_to root_path
+    end
   end
 
   def set_item
