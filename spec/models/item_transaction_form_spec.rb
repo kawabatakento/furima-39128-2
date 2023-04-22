@@ -14,15 +14,6 @@ RSpec.describe ItemTransactionForm, type: :model do
         expect(@item_transaction_form).to be_valid
       end
 
-      it 'クレジットカード情報が正しい（PAY.JPのテストカード）場合、購入できる' do
-        @item_transaction_form.card_number = '4242424242424242'
-        @item_transaction_form.exp_month = (Date.today + 1.month).month
-        @item_transaction_form.exp_year = (Date.today + 1.month).year % 100
-        @item_transaction_form.cvc = '123'
-        expect(@item_transaction_form).to be_valid
-      end
-
-
       it '建物名が空でも購入できる' do
         @item_transaction_form.building = ''
         expect(@item_transaction_form).to be_valid
@@ -30,7 +21,7 @@ RSpec.describe ItemTransactionForm, type: :model do
     end
 
     context '商品購入が失敗するとき' do
-      
+
       it '郵便番号が空だと購入できない' do
         @item_transaction_form.postal_code = ''
         @item_transaction_form.valid?
@@ -84,6 +75,12 @@ RSpec.describe ItemTransactionForm, type: :model do
         @item_transaction_form.valid?
         expect(@item_transaction_form.errors.full_messages).to include('Phone number は10桁以上11桁以内の半角数値で入力してください')
       end
+
+      it 'tokenが空だと購入できない' do
+        @item_transaction_form.token = ''
+        @item_transaction_form.valid?
+        expect(@item_transaction_form.errors.full_messages).to include("Token can't be blank")
+      end    
     end
   end
 end
