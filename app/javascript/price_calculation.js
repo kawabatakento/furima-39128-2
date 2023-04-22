@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+const calculateFeesAndProfit = () => {
   const itemPriceInput = document.getElementById("item-price");
   const addTaxPrice = document.getElementById("add-tax-price");
   const profit = document.getElementById("profit");
@@ -15,6 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
       profit.textContent = "";
     }
   });
-});
+};
 
-window.addEventListener('load', post);
+window.addEventListener("load", calculateFeesAndProfit);
