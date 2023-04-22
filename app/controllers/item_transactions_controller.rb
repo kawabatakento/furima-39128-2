@@ -9,14 +9,9 @@ class ItemTransactionsController < ApplicationController
 
   def create
     @item_transaction_form = ItemTransactionForm.new(item_transaction_form_params)
-    if @item_transaction_form.save
-      # Payjpへの決済処理の追加
-      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: params[:token],
-        currency: 'jpy'
-      )
+    if @item_transaction_form.valid?
+      pay_item
+      @item_transaction_form.save
       redirect_to root_path
     else
       render :index
@@ -45,5 +40,14 @@ class ItemTransactionsController < ApplicationController
     return unless current_user.id == @item.user_id
 
     redirect_to root_path
+  end
+
+  def pay_item
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: item_transaction_form_params[:token],
+      currency: 'jpy'
+    )
   end
 end
