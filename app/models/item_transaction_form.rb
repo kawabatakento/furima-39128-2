@@ -2,7 +2,7 @@ class ItemTransactionForm
   include ActiveModel::Model
 
   attr_accessor :user_id, :item_id, :shipping_address_attributes,
-  :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :token
+  :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :token, :card_number, :exp_month, :exp_year, :cvc
 
   # 必須項目のバリデーション
   with_options presence: true do
