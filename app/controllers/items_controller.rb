@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.user_id == current_user.id 
+    if @item.user_id == current_user.id
       @item.destroy
       redirect_to root_path
     else
@@ -63,9 +63,9 @@ class ItemsController < ApplicationController
   end
 
   def prevent_sold_out_item_edit
-    if ItemTransaction.exists?(item_id: @item.id)
-      redirect_to root_path
-    end
+    return unless ItemTransaction.exists?(item_id: @item.id)
+
+    redirect_to root_path
   end
 
   def set_item

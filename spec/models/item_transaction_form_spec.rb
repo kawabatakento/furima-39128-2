@@ -21,7 +21,6 @@ RSpec.describe ItemTransactionForm, type: :model do
     end
 
     context '商品購入が失敗するとき' do
-
       it '郵便番号が空だと購入できない' do
         @item_transaction_form.postal_code = ''
         @item_transaction_form.valid?
@@ -37,7 +36,7 @@ RSpec.describe ItemTransactionForm, type: :model do
       it '都道府県が選択されていないと購入できない' do
         @item_transaction_form.prefecture_id = 0
         @item_transaction_form.valid?
-        expect(@item_transaction_form.errors.full_messages).to include("Prefecture を選択してください")
+        expect(@item_transaction_form.errors.full_messages).to include('Prefecture を選択してください')
       end
 
       it '市区町村が空だと購入できない' do
@@ -80,14 +79,14 @@ RSpec.describe ItemTransactionForm, type: :model do
         @item_transaction_form.token = ''
         @item_transaction_form.valid?
         expect(@item_transaction_form.errors.full_messages).to include("Token can't be blank")
-      end 
-      
+      end
+
       it 'user_idが空だと購入できない' do
         @item_transaction_form.user_id = nil
         @item_transaction_form.valid?
         expect(@item_transaction_form.errors.full_messages).to include("User can't be blank")
       end
-      
+
       it 'item_idが空だと購入できない' do
         @item_transaction_form.item_id = nil
         @item_transaction_form.valid?
@@ -96,4 +95,3 @@ RSpec.describe ItemTransactionForm, type: :model do
     end
   end
 end
-

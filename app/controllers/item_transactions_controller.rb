@@ -25,9 +25,9 @@ class ItemTransactionsController < ApplicationController
   end
 
   def prevent_sold_out_item_purchase
-    if @item.item_transaction.present?
-      redirect_to root_path
-    end
+    return unless @item.item_transaction.present?
+
+    redirect_to root_path
   end
 
   def item_transaction_form_params
