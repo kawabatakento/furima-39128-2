@@ -60,7 +60,7 @@ end
 gem 'devise'
 
 group :production do
-  gem 'pg'
+  gem 'mysql2', '>= 0.4.4'
   gem 'unicorn', '5.4.1'
 end
 
