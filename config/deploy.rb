@@ -3,7 +3,7 @@ lock '~> 3.17.2'
 
 set :application, 'furima-39128'
 set :repo_url, 'git@github.com:kawabatakento/furima-39128-2.git'
-
+set :branch, 'main'
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
