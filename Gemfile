@@ -77,8 +77,6 @@ group :development, :test do
   gem 'capistrano3-unicorn'
 end
 
-gem 'active_hash'
-
 gem 'pry-rails'
 
 gem 'active_hash'
@@ -87,3 +85,4 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'payjp'
 gem "aws-sdk-s3", require: false
+gem 'date', '3.3.3'
